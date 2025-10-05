@@ -1,5 +1,8 @@
+# clusters/microk8s-cluster/flux-system/kustomization.yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-- gotk-components.yaml
-- gotk-sync.yaml
+  - gotk-components.yaml
+  - gotk-sync.yaml
+  - sealed-secrets-helmrepo.yaml
+  - sealed-secrets-infra.yaml # <--- ¡Añade esta línea!
