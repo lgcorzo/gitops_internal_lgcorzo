@@ -5,4 +5,4 @@ resources:
   - gotk-components.yaml
   - gotk-sync.yaml
   - sealed-secrets-helmrepo.yaml
-  - sealed-secrets-infra.yaml # <--- ¡Añade esta línea!
+  - infra-kustomization.yaml # <-- AÑADE este nuevo archivo

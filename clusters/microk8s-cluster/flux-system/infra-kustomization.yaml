@@ -1,0 +1,23 @@
+# clusters/microk8s-cluster/flux-system/infra-kustomization.yaml
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  # Este es el nombre del NUEVO recurso Kustomization que aparecerá en el clúster
+  name: infra
+  namespace: flux-system
+spec:
+  interval: 10m
+  # Apunta a la carpeta que contiene las aplicaciones de infraestructura
+  path: ./clusters/microk8s-cluster/infra
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system # Debe coincidir con el nombre de tu GitRepository en gotk-sync.yaml
+  
+  # --- ¡LA LÍNEA MÁS IMPORTANTE! ---
+  # Esto le dice a Flux: "No intentes aplicar esto hasta que la Kustomization
+  # llamada 'flux-system' esté completamente saludable y lista".
+  dependsOn:
+    - name: flux-system
+  
+  timeout: 5m # Aumenta el tiempo de espera por si acaso
